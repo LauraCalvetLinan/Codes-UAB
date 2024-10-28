@@ -1,0 +1,36 @@
+from sys import maxsize
+from itertools import permutations
+
+numCities = 4 # Number of cities/nodes
+graph = [[0, 10, 15, 20],
+    [10, 0, 35, 25],
+		[15, 35, 0, 30],
+    [20, 25, 30, 0]]
+city0 = 0 # Starting city
+
+vertex = []
+for i in range(numCities):
+  if i != city0:
+    vertex.append(i)
+print(vertex)
+
+min_path = maxsize
+print(min_path)
+
+all_permutations = permutations(vertex)
+for permutation in all_permutations:
+	print(permutation)
+
+all_permutations = permutations(vertex)
+for permutation in all_permutations:
+	print(permutation)
+	current_pathweight = city0
+	k = city0
+	for city in permutation:
+		current_pathweight = current_pathweight + graph[k][city]
+		k = city
+	current_pathweight = current_pathweight + graph[k][city0]
+	print(current_pathweight)
+	min_path = min(min_path, current_pathweight)
+
+print(min_path)
